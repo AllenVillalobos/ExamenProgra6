@@ -38,10 +38,10 @@ namespace Examen.Views
 
                 Producto producto = new Producto
                 {
-                    ProductoID = int.Parse(txtID.Text),
-                    Nombre = txtNombre.Text,
-                    Descripcion = txtDescripcion.Text,
-                    Precio = float.Parse(txtPrecio.Text),
+                    ProductoID = Convert.ToInt32(txtID.Text),
+                    Nombre = string.IsNullOrEmpty(txtNombre.Text) ? null : txtNombre.Text,
+                    Descripcion = string.IsNullOrEmpty(txtDescripcion.Text) ? null : txtDescripcion.Text,
+                    Precio =  float.Parse(txtPrecio.Text),
                     CantidadStock = int.Parse(txtCantidad.Text),
                     ModificadoPor = "Admin" // En un escenario real, esto debería ser el usuario autenticado
                 };
@@ -76,7 +76,7 @@ namespace Examen.Views
             DesactivarValidadoresSinID();
             try
             {
-                int productoID = int.Parse(txtID.Text);
+                int productoID = Convert.ToInt32(txtID.Text);
                 int resultado = productoDAO.EliminarProducto(productoID);
                 if (resultado > 0)
                 {
@@ -101,7 +101,7 @@ namespace Examen.Views
             DesactivarValidadoresSinID();
             try
             {
-                int productoID = int.Parse(txtID.Text);
+                int productoID = Convert.ToInt32(txtID.Text);
                 var producto = productoDAO.ListarProducto(productoID);
                 if (producto.Rows.Count > 0)
                 {
@@ -139,6 +139,7 @@ namespace Examen.Views
         /// </summary>
         private void DesactivarValidadoresSinID()
         {
+            rfvDescripcion.Enabled = false;
             rfvCantidad.Enabled = false;
             cvCantidadTipo.Enabled = false;
             cvCantidadValor.Enabled = false;
@@ -156,6 +157,7 @@ namespace Examen.Views
         /// </summary>
         private void ActivarValidadoresSinID()
         {
+            rfvDescripcion.Enabled = true;
             rfvCantidad.Enabled = true;
             cvCantidadTipo.Enabled = true;
             cvCantidadValor.Enabled = true;

@@ -109,7 +109,6 @@
             <!-- Campo para seleccionar o resivir la categoría del producto -->
             <!-- Se utiliza un DropDownList para mostrar las categorías disponibles -->
             <label class="Etiqueta">Categoría</label>
-            <!-- Opciones del DropDownList -->
             <asp:DropDownList runat="server" ID="ddlCategorias">
                 <asp:ListItem Value="" Text="Seleccione una categoría" />
                 <asp:ListItem Value="Ropa" Text="Ropa" />
@@ -202,7 +201,6 @@
                     AutoGenerateColumns="false"
                     OnSelectedIndexChanged="gvProductos_SelectedIndexChanged"
                     CssClass="Tabla">
-                    <!-- Definición de las columnas de la tabla -->
                     <Columns>
                         <asp:BoundField DataField="ProductoID" HeaderText="ID" />
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />

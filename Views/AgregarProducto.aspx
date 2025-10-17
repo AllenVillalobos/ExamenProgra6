@@ -111,7 +111,6 @@
             <!-- Se utiliza un DropDownList para mostrar las categorías disponibles -->
             <label class="Etiqueta">Categoría</label>
             <asp:DropDownList runat="server" ID="ddlCategorias" CssClass="Desplegable">
-                <!-- Opciones del DropDownList -->
                 <asp:ListItem Value="" Text="Seleccione una categoría" />
                 <asp:ListItem Value="Ropa" Text="Ropa" />
                 <asp:ListItem Value="Electrónica" Text="Electrónica" />

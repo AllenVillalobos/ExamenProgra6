@@ -31,12 +31,11 @@ namespace Examen.Views
 
                 Producto producto = new Producto
                 {
-                    Nombre = txtNombre.Text,
-                    Descripcion = txtDescripcion.Text,
+                    Nombre = string.IsNullOrEmpty(txtDescripcion.Text) ?  null : txtDescripcion.Text,
+                    Descripcion = string.IsNullOrEmpty(txtDescripcion.Text) ? null : txtDescripcion.Text,
                     Precio = float.Parse(txtPrecio.Text),
-
-                    CantidadStock = int.Parse(txtCantidad.Text),
-                    RegistradoPor = "Admin" // En un escenario real, esto debería ser el usuario autenticado
+                    CantidadStock = Convert.ToInt32(txtCantidad.Text),
+                    RegistradoPor = "Admin" 
                 };
                 if (ddlCategorias.SelectedValue == "")
                 {

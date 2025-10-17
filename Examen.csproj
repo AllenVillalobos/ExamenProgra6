@@ -88,6 +88,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\ExamenScript.sql" />
     <Content Include="Global.asax" />
     <Content Include="Views\AgregarProducto.aspx" />
     <Content Include="Views\Index.aspx" />
