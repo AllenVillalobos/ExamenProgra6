@@ -8,13 +8,27 @@ using System.Web;
 
 namespace Examen.Models
 {
+    /// <summary>
+    ///  Clase para acceder a la base de datos y realizar operaciones CRUD sobre la tabla Producto
+    /// </summary>
     public class ProductoDAO
     {
+        /// <summary>
+        /// Establece la cadena de conexión a la base de datos
+        /// </summary>
         private readonly string connectionString;
+
+        /// <summary>
+        /// Constructor que inicializa la cadena de conexión desde el archivo de configuración
+        /// </summary>
         public ProductoDAO()
         {
             this.connectionString = ConfigurationManager.ConnectionStrings["ConexionBaseDatos"].ConnectionString;
         }
+        /// <summary>
+        /// Método para listar todos los productos en la base de datos
+        /// </summary>
+        /// <returns>Retorna un DataTable con todos los productos</returns>
         public DataTable ListarProductos()
         {
             DataTable dt = new DataTable();
@@ -29,6 +43,11 @@ namespace Examen.Models
                 }
             }
         }
+        /// <summary>
+        /// Método para listar un producto específico por su ID
+        /// </summary>
+        /// <param name="ID">Representa el ID del producto a buscar</param>
+        /// <returns>Retorna un DataTable con un producto específico</returns>
         public DataTable ListarProducto(int ID)
         {
             DataTable dt = new DataTable();
@@ -44,7 +63,12 @@ namespace Examen.Models
                 }
             }
         }
-
+        /// <summary>
+        /// Método para crear un nuevo producto en la base de datos
+        /// </summary>
+        /// <param name="producto">Representa el nuevo producto a crear</param>
+        /// <returns>Retorna un numero mayor 0 cuando se crea un nuevo producto, en caso contrario retorna 0</returns>
+        /// <exception cref="Exception">En caso que algun fallo succeda durante la ejecución</exception>
         public int CrearProducto(Producto producto)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -82,6 +106,12 @@ namespace Examen.Models
                 }
             }
         }
+        /// <summary>
+        /// Método para actualizar un producto existente en la base de datos
+        /// </summary>
+        /// <param name="producto">Representa el producto a actualizar</param>
+        /// <returns>Retorna un numero mayor 0 cuando se actualiza un producto, en caso contrario retorna 0</returns>
+        /// <exception cref="Exception">En caso que algun fallo succeda durante la ejecución</exception>"
         public int ActualizarProducto(Producto producto)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -120,6 +150,12 @@ namespace Examen.Models
                 }
             }
         }
+        /// <summary>
+        /// Método para eliminar un producto de la base de datos
+        /// </summary>
+        /// <param name="ID">Representa el ID del producto a eliminar</param>
+        /// <returns>Retorna un numero mayor 0 cuando se elimina un producto, en caso contrario retorna 0</returns>
+        /// <exception cref="Exception">En caso que algun fallo succeda durante la ejecución</exception>"
         public int EliminarProducto(int ID)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

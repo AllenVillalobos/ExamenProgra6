@@ -10,11 +10,20 @@ namespace Examen.Views
 {
     public partial class AgregarProducto : System.Web.UI.Page
     {
+        /// <summary>
+        /// Se crea una instancia de ProductoDAO para interactuar con la base de datos
+        /// </summary>
         ProductoDAO productoDAO = new ProductoDAO();
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
+
+        ///<summary>
+        ///Procedimiento que se ejecuta al hacer clic en el botón "Agregar"
+        ///Agrega un nuevo producto a la base de datos utilizando los datos ingresados en el formulario
+        /// </summary>
+        /// <exception cref="Exception">Captura cualquier excepción que ocurra durante el proceso y muestra un mensaje de error</exception>"
         public void btnAgregar_Click(object sender, EventArgs e)
         {
             try
@@ -48,6 +57,11 @@ namespace Examen.Views
                 MostrarMensaje("Error al agregar producto: " + ex.Message, true);
             }
         }
+
+        /// <summary>
+        /// Procedimiento para desactivar los validadores del formulario
+        /// Esto es útil para limpiar el formulario sin que los validadores interfieran
+        /// </summary>
         private void DesactivarValidadores()
         {
             rfvCantidad.Enabled = false;
@@ -59,6 +73,11 @@ namespace Examen.Views
             cvPrecioTipo.Enabled = false;
             rfvCategoria.Enabled = false;
         }
+
+        /// <summary>
+        /// Procedimiento para activar los validadores del formulario
+        /// Una vez que el formulario ha sido limpiado, los validadores se reactivan
+        /// </summary>
         private void ActivarValidadores()
         {
             rfvCantidad.Enabled = true;
@@ -70,6 +89,11 @@ namespace Examen.Views
             cvPrecioTipo.Enabled = true;
             rfvCategoria.Enabled = true;
         }
+
+        /// <summary>
+        /// Procedimiento que se ejecuta al hacer clic en el botón "Limpiar"
+        /// Se encarga de limpiar todos los campos del formulario
+        /// </summary>
         public void btnLimpiar_Click(object sender, EventArgs e)
         {
             DesactivarValidadores();
@@ -82,11 +106,22 @@ namespace Examen.Views
             ActivarValidadores();
 
         }
+
+        /// <summary>
+        /// Procedimiento para mostrar mensajes al usuario
+        /// Dependiendo del tipo de mensaje (error o éxito), el color del texto cambia
+        /// Y se muestra el mensaje 
+        /// </summary>
         private void MostrarMensaje(string mensaje, bool esError)
         {
             lblMensaje.Text = mensaje;
             lblMensaje.ForeColor = esError ? System.Drawing.Color.Red : System.Drawing.Color.Green;
         }
+
+        /// <summary>
+        /// Procedimiento que se ejecuta al hacer clic en el botón "Volver"
+        /// Sirve para redirigir al usuario de vuelta al Index.aspx
+        /// </summary>
         public void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("Index.aspx");
